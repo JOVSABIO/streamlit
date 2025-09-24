@@ -165,7 +165,7 @@ def create_metric_card(icon, value, label, card_type="default"):
     elif card_type == "warning":
         card_class += " metric-card-warning"
     
-    return f
+    return f"""
     <div class="{card_class}">
         <div class="metric-icon">{icon}</div>
         <div class="metric-value">{value}</div>
