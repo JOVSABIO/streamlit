@@ -90,7 +90,7 @@ def load_csv_from_drive(drive_link):
         else:
             return None, "Formato de enlace no válido"
         
-        download_url = f'https://drive.google.com/uc?id=1R5JxWJZK_OvFYdGmE2mG3wUhFRb7StdD&export=download'
+        download_url = f'https://drive.google.com/uc?id={file_id}&export=download'
         response = requests.get(download_url)
         response.raise_for_status()
         
@@ -107,7 +107,7 @@ def load_csv_from_drive(drive_link):
         return None, f"Error: {str(e)}"
 
 def process_data(df):
-    #"""Procesar datos del CSV"""
+    """Procesar datos del CSV"""
     try:
         coordinates_data = []
         complete_data = []
@@ -159,21 +159,23 @@ def create_metric_card(icon, value, label, card_type="default"):
     """Crear una tarjeta de métrica moderna"""
     card_class = "metric-card"
     if card_type == "danger":
-        card_class += " metric-card-danger"
+        card_class = "metric-card metric-card-danger"
     elif card_type == "success":
-        card_class += " metric-card-success"
+        card_class = "metric-card metric-card-success"
     elif card_type == "warning":
-        card_class += " metric-card-warning"
+        card_class = "metric-card metric-card-warning"
     
-    return f"""
+    html_content = f"""
     <div class="{card_class}">
         <div class="metric-icon">{icon}</div>
         <div class="metric-value">{value}</div>
         <div class="metric-label">{label}</div>
     </div>
     
+    return html_content
+
 def create_advanced_map(data, map_type='markers', zoom_start=12):
-    #Crear mapa interactivo con Folium
+    """Crear mapa interactivo con Folium"""
     try:
         medellin_center = [6.2442, -75.5812]
         
@@ -213,7 +215,7 @@ def create_advanced_map(data, map_type='markers', zoom_start=12):
         return None
 
 def get_unique_values(series):
-   #Obtener valores únicos de una serie de manera segura
+    """Obtener valores únicos de una serie de manera segura"""
     try:
         unique_vals = series.astype(str)
         unique_vals = unique_vals[unique_vals != '']
