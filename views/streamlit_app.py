@@ -90,7 +90,7 @@ def load_csv_from_drive(drive_link):
         else:
             return None, "Formato de enlace no válido"
         
-        download_url = f'https://drive.google.com/uc?id={file_id}&export=download'
+        download_url = f'https://drive.google.com/uc?id=1R5JxWJZK_OvFYdGmE2mG3wUhFRb7StdD&export=download'
         response = requests.get(download_url)
         response.raise_for_status()
         
