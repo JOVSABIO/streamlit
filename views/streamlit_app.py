@@ -32,7 +32,7 @@ with st.sidebar:
     # REEMPLAZA ESTE ID CON EL TUYO
     enlace = st.text_input(
         "Enlace de Google Drive:",
-        value="https://drive.google.com/uc?id=1TU_FILE_ID_REAL"  # 🔥 CAMBIA ESTO
+        value='https://drive.google.com/uc?id=1R5JxWJZK_OvFYdGmE2mG3wUhFRb7StdD&export=download'
     )
     
     if st.button("Cargar Datos y Mostrar Mapa"):
