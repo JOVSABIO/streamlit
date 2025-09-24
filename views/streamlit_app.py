@@ -81,7 +81,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def load_csv_from_drive(drive_link):
-    """Cargar CSV desde Google Drive"""
+    # Cargar CSV desde Google Drive
     try:
         if 'id=' in drive_link:
             file_id = drive_link.split('id=')[1].split('&')[0]
@@ -90,7 +90,7 @@ def load_csv_from_drive(drive_link):
         else:
             return None, "Formato de enlace no válido"
         
-        download_url = f'https://drive.google.com/uc?id={file_id}&export=download'
+        download_url = f'https://drive.google.com/uc?id=1R5JxWJZK_OvFYdGmE2mG3wUhFRb7StdD&export=download'
         response = requests.get(download_url)
         response.raise_for_status()
         
@@ -107,7 +107,7 @@ def load_csv_from_drive(drive_link):
         return None, f"Error: {str(e)}"
 
 def process_data(df):
-    """Procesar datos del CSV"""
+    # Procesar datos del CSV
     try:
         coordinates_data = []
         complete_data = []
@@ -156,7 +156,7 @@ def process_data(df):
         return pd.DataFrame(), pd.DataFrame(), 0
 
 def create_metric_card(icon, value, label, card_type="default"):
-    """Crear una tarjeta de métrica moderna"""
+    # Crear una tarjeta de métrica moderna
     card_class = "metric-card"
     if card_type == "danger":
         card_class = "metric-card metric-card-danger"
@@ -171,11 +171,11 @@ def create_metric_card(icon, value, label, card_type="default"):
         <div class="metric-value">{value}</div>
         <div class="metric-label">{label}</div>
     </div>
-    
+    ''
     return html_content
 
 def create_advanced_map(data, map_type='markers', zoom_start=12):
-    """Crear mapa interactivo con Folium"""
+    # Crear mapa interactivo con Folium
     try:
         medellin_center = [6.2442, -75.5812]
         
@@ -211,11 +211,12 @@ def create_advanced_map(data, map_type='markers', zoom_start=12):
                 ).add_to(m)
         
         return m
-    except ImportError:
+    except Exception as e:
+        st.error(f"Error al crear mapa: {str(e)}")
         return None
 
 def get_unique_values(series):
-    #"""Obtener valores únicos de una serie de manera segura"""
+    # Obtener valores únicos de una serie de manera segura
     try:
         unique_vals = series.astype(str)
         unique_vals = unique_vals[unique_vals != '']
@@ -313,7 +314,7 @@ def main():
                     if gravedades:
                         st.session_state.gravedades_sel = st.multiselect("Gravedad:", gravedades, default=gravedades)
                 
-                # ✅ NUEVOS FILTROS DE BARRIOS Y COMUNAS
+                # NUEVOS FILTROS DE BARRIOS Y COMUNAS
                 if 'barrio' in complete_data.columns:
                     barrios = get_unique_values(complete_data['barrio'])
                     if barrios:
@@ -355,7 +356,7 @@ def main():
             filtered_data = filtered_data[filtered_data['clase'].astype(str).isin(st.session_state.clases_sel)]
         if hasattr(st.session_state, 'gravedades_sel'):
             filtered_data = filtered_data[filtered_data['gravedad'].astype(str).isin(st.session_state.gravedades_sel)]
-        # ✅ APLICAR FILTROS DE BARRIOS Y COMUNAS
+        # APLICAR FILTROS DE BARRIOS Y COMUNAS
         if hasattr(st.session_state, 'barrios_sel'):
             filtered_data = filtered_data[filtered_data['barrio'].astype(str).isin(st.session_state.barrios_sel)]
         if hasattr(st.session_state, 'comunas_sel'):
