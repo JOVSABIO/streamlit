@@ -215,7 +215,7 @@ def create_advanced_map(data, map_type='markers', zoom_start=12):
         return None
 
 def get_unique_values(series):
-    """Obtener valores únicos de una serie de manera segura"""
+    #"""Obtener valores únicos de una serie de manera segura"""
     try:
         unique_vals = series.astype(str)
         unique_vals = unique_vals[unique_vals != '']
