@@ -165,13 +165,13 @@ def create_metric_card(icon, value, label, card_type="default"):
     elif card_type == "warning":
         card_class = "metric-card metric-card-warning"
     
-    html_content = f"""
+    html_content = f'''
     <div class="{card_class}">
         <div class="metric-icon">{icon}</div>
         <div class="metric-value">{value}</div>
         <div class="metric-label">{label}</div>
     </div>
-    ''
+    '''
     return html_content
 
 def create_advanced_map(data, map_type='markers', zoom_start=12):
