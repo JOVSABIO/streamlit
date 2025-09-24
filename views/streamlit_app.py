@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 from io import StringIO
+from streamlit_folium import st_folium 
 
 # Configuración de la página
 st.set_page_config(
