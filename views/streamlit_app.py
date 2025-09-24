@@ -107,7 +107,7 @@ def load_csv_from_drive(drive_link):
         return None, f"Error: {str(e)}"
 
 def process_data(df):
-    """Procesar datos del CSV"""
+    #"""Procesar datos del CSV"""
     try:
         coordinates_data = []
         complete_data = []
@@ -173,7 +173,7 @@ def create_metric_card(icon, value, label, card_type="default"):
     </div>
     
 def create_advanced_map(data, map_type='markers', zoom_start=12):
-    """Crear mapa interactivo con Folium"""
+    #Crear mapa interactivo con Folium
     try:
         medellin_center = [6.2442, -75.5812]
         
@@ -213,7 +213,7 @@ def create_advanced_map(data, map_type='markers', zoom_start=12):
         return None
 
 def get_unique_values(series):
-    """Obtener valores únicos de una serie de manera segura"""
+   # """Obtener valores únicos de una serie de manera segura"""
     try:
         unique_vals = series.astype(str)
         unique_vals = unique_vals[unique_vals != '']
